@@ -3,7 +3,7 @@
 - Solution to every exercise is edited by __````blue````__ font in each section.
 
 
-## Preliminaries
+## Section1: Preliminaries
 __Solutions to ````exerise 1.1```` to ````exercise 1.18```` are available in the above document.__
 
 1.1 Exchangeability and de Finetti's theorem
