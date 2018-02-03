@@ -4,7 +4,7 @@
 
 
 ## Section1: Preliminaries
-__Solutions to ````exerise 1.1```` to ````exercise 1.18```` are available in the above ````sds-383d-section01.pdf```` file.__
+__Solutions to ````exerise 1.1```` to ````exercise 1.18```` are available in the above [````sds-383d-section01.pdf````](https://github.com/xinerli/SDS383-Statistical-Modeling-II/blob/master/sds-383d-section01.pdf) file.__
 
 - 1.1 Exchangeability and de Finetti's theorem
 
