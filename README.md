@@ -25,7 +25,7 @@ __Solutions are available in the folder ````section02```` with file name [````sd
 
 - 2.4 A hierarchical Gaussian linear model
 
-## Section3: Bayesian Generalize Linear Models
+## Section3: Bayesian Generalized Linear Models
 __Solutions are available in the folder ````section03```` with file name [````sds-383d-section03.pdf````](https://github.com/xinerli/SDS383-Statistical-Modeling-II/blob/master/section03/sds-383d-section03.pdf) file.__
 - 3.1 Modeling non-Gaussian observations
 
