@@ -1,6 +1,8 @@
 library(readr)
 library(rstan)
-tea_discipline_oss <- read.csv("/home/xinjie/Dropbox/courses/2018_Spring/STAT_MODEL/sds383d/code/ex3/tea_discipline_oss.csv") 
+setwd("D:/2018 UT Austin/R Code/Statistical Modeling II")
+
+tea_discipline_oss <- read.csv(tea_discipline_oss.csv") 
 View(tea_discipline_oss)
 
 uncensored_data = subset(tea_discipline_oss,ACTIONS>0)
