@@ -4,7 +4,7 @@
 
 
 ## Section1: Preliminaries
-__Solutions to ````exerise 1.2```` to ````exercise 1.27```` are available in the folder ````section01```` with file name [````sds-383d-section01.pdf````](https://github.com/xinerli/SDS383-Statistical-Modeling-II/blob/master/section01/sds-383d-section01.pdf) file.__
+__Solutions are available in the folder ````section01```` with file name [````sds-383d-section01.pdf````](https://github.com/xinerli/SDS383-Statistical-Modeling-II/blob/master/section01/sds-383d-section01.pdf) file.__
 
 - 1.1 Exchangeability and de Finetti's theorem
 
