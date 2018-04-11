@@ -1,21 +1,23 @@
-setwd("D:/2018 UT Austin/R Code/Statistical Modeling II")
+rm(list = ls())
+setwd("D:/2018 UT Austin/R Code/Statistical Modeling II/section04")
 library(MASS)
 library(ggplot2)
 set.seed(51) # reproducibility
 
 ## exercise 4.5 
-
+#---------------------------------------------------------------------
 # define exponential kernel
-kfunc_exp = function(x1, x2, l=1) {
+kfunc_exp = function(x1, x2, alpha = 0.9193077, l = 9.9193396) {
   Sigma = matrix(rep(0, length(x1) * length(x2)), nrow = length(x1))
   for (i in 1:nrow(Sigma)) {
     for (j in 1:ncol(Sigma)) {
-      Sigma[i,j] = exp(-0.5 * (abs(x1[i]-x2[j])/l)^2)
+      Sigma[i,j] = alpha^2 * exp(-0.5 * (abs(x1[i]-x2[j])/l)^2)
     }
   }
   return(Sigma)
 }
 
+#---------------------------------------------------------------------
 # function to get the GP solution
 gp_solve = function(x.train, y.train, x.pred, kernel, sigma2e = 0) {
   solution = list()
@@ -39,6 +41,7 @@ gp_solve = function(x.train, y.train, x.pred, kernel, sigma2e = 0) {
   return( solution )
 }
 
+#---------------------------------------------------------------------
 # function to plot the GP solution
 gp_plot = function(x, y, x.pred, mu.pred, cov.pred, n.sample=0, main="", scale.se=T){
   if (scale.se) {
@@ -53,7 +56,7 @@ gp_plot = function(x, y, x.pred, mu.pred, cov.pred, n.sample=0, main="", scale.s
   xrng = range(c(x,x.pred), na.rm = T)
   
   plot(x, y, type="n", xlab="x", ylab="y", 
-       xlim=xrng, ylim=yrng, xaxs="i", main=main)
+       xlim=xrng, ylim=yrng, xaxs="i", main=main,  cex.main = 1)
   
   # plot the credible interval 
   # diagonal of the predicted cov is the variance of each prediction
@@ -79,24 +82,25 @@ gp_plot = function(x, y, x.pred, mu.pred, cov.pred, n.sample=0, main="", scale.s
   points(x, y, col="red", pch=19, cex=0.75)
 }
 
-
+#---------------------------------------------------------------------
 # 1. fitting the GP with noise (y = k(x) + e)
 # assuming noise is additive and iid
 data("faithful", package = "datasets")
 y = faithful$eruptions; x = faithful$waiting
 summary(x)
 
-sigma2e = 1
-# x.test = matrix(seq(min(x), max(x), len = 200), nrow = 200, ncol = 1)
-x.test = matrix(seq(0, 100, len = 200), nrow = 200, ncol = 1)
+sigma2e = 0.3236127^2
+x.test = matrix(seq(min(x), max(x), len = 200), nrow = 200, ncol = 1)
+# x.test = matrix(seq(0, 100, len = 200), nrow = 200, ncol = 1)
 y.noisy = y + rnorm(length(x), mean = 0, sd = sqrt(sigma2e))
 
 # solve gp and plot
 gp = gp_solve(x, y.noisy, x.test, kfunc_exp, sigma2e )
-gp_plot(x, y.noisy, x.test, gp[["mu"]], gp[["var"]], 
-        main = "GP Regression with Sigma = 1", scale.se = F)
+gp_plot(x, y.noisy, x.test, gp[["mu"]], gp[["var"]],
+        main = expression(paste("GP Regression with Optimized ", 
+                                alpha, ", ", sigma, " and ", l)), scale.se = F)
 
-
+#---------------------------------------------------------------------
 # 2. fitting the GP without noise (y=k(x))
 gp = gp_solve(x, y, x.test, kfunc_exp)
 gp_plot(x, y, x.test, gp[["mu"]], gp[["var"]], main="Gaussian Process Regression")
